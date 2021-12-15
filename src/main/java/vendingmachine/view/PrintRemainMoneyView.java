@@ -1,11 +1,9 @@
 package vendingmachine.view;
 
+import static vendingmachine.model.EventType.CHANGE_REMAIN_MONEY;
 import java.util.Observable;
 import java.util.Observer;
-import vendingmachine.model.Coins;
 import vendingmachine.model.Event;
-import static vendingmachine.model.EventType.CHANGE_REMAIN_MONEY;
-import static vendingmachine.model.EventType.INPUT_COINS;
 
 public class PrintRemainMoneyView implements Observer {
 	@Override
@@ -18,7 +16,6 @@ public class PrintRemainMoneyView implements Observer {
 	}
 
 	private void printRemainMoney(Integer money) {
-		System.out.println();
 		System.out.println("투입 금액: " + money + "원");
 	}
 }

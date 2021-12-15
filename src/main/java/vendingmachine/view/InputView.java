@@ -27,6 +27,11 @@ public class InputView {
 		return parseItemList(itemList);
 	}
 
+	public static String inputItem() {
+		String item = inputWithMessage("구매할 상품명을 입력해 주세요.");
+		return item;
+	}
+
 	private static String inputWithMessage(String s) {
 		System.out.println(s);
 		String money = Console.readLine();

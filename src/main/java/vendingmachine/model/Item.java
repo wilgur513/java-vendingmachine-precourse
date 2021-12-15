@@ -10,4 +10,20 @@ public class Item {
 		this.price = price;
 		this.quantity = quantity;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void sell() {
+		quantity--;
+	}
+
+	public boolean isSoldOut() {
+		return quantity == 0;
+	}
 }

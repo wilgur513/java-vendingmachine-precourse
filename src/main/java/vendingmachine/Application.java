@@ -6,19 +6,20 @@ import vendingmachine.view.OutputView;
 
 public class Application {
 	public static void main(String[] args) {
-		String money = inputMoney();
-		Coins coins = new CoinsGenerator().generate(money);
+		String coinsAmount = inputMoney("자판기가 보유하고 있는 금액을 입력해 주세요.");
+		Coins coins = new CoinsGenerator().generate(coinsAmount);
 		OutputView.printChangeCoins(coins);
-
+		List<Item> itemList = inputItemList();
+		String inputMoney = inputMoney("투입 금액을 입력해 주세요.");
 	}
 
-	private static String inputMoney() {
+	private static String inputMoney(String message) {
 		try {
-			return InputView.inputMoney();
+			return InputView.inputMoney(message);
 		} catch (IllegalArgumentException e) {
 			System.out.println("[ERROR] " + e.getMessage());
 			System.out.println();
-			return inputMoney();
+			return inputMoney(message);
 		}
 	}
 

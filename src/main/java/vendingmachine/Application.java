@@ -1,12 +1,13 @@
 package vendingmachine;
 
 import vendingmachine.view.InputView;
+import vendingmachine.view.OutputView;
 
 public class Application {
 	public static void main(String[] args) {
 		String money = inputMoney();
 		Coins coins = new CoinsGenerator().generate(money);
-		System.out.println(coins);
+		OutputView.printChangeCoins(coins);
 	}
 
 	private static String inputMoney() {

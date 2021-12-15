@@ -22,30 +22,34 @@ public class VendingMachineController {
 	}
 
 	public void service() {
-		Coins coins = coinsGenerator.generate(inputMoney("자판기가 보유하고 있는 금액을 입력해 주세요."));
-		vendingMachine.inputCoins(coins);
-		vendingMachine.addItemList(inputItemList());
-		vendingMachine.inputMoney(inputMoney("투입 금액을 입력해 주세요."));
-
+		initVendingMachine();
 		while (!vendingMachine.isClose()) {
-			try {
-				vendingMachine.purchase(inputItem());
-			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
-				System.out.println();
-			}
+			purchaseItem();
 		}
-
 		vendingMachine.close();
 	}
 
-	private static String inputMoney(String message) {
+	private void initVendingMachine() {
+		Coins coins = coinsGenerator.generate(inputMoneyWithMessage("자판기가 보유하고 있는 금액을 입력해 주세요."));
+		vendingMachine.inputCoins(coins);
+		vendingMachine.addItemList(inputItemList());
+		vendingMachine.inputMoney(inputMoneyWithMessage("투입 금액을 입력해 주세요."));
+	}
+
+	private void purchaseItem() {
+		try {
+			vendingMachine.purchase(inputItem());
+		} catch (IllegalArgumentException e) {
+			printErrorMessage(e);
+		}
+	}
+
+	private static String inputMoneyWithMessage(String message) {
 		try {
 			return InputView.inputMoney(message);
 		} catch (IllegalArgumentException e) {
-			System.out.println("[ERROR] " + e.getMessage());
-			System.out.println();
-			return inputMoney(message);
+			printErrorMessage(e);
+			return inputMoneyWithMessage(message);
 		}
 	}
 
@@ -53,8 +57,7 @@ public class VendingMachineController {
 		try {
 			return InputView.inputItemList();
 		} catch (IllegalArgumentException e) {
-			System.out.println("[ERROR] " + e.getMessage());
-			System.out.println();
+			printErrorMessage(e);
 			return inputItemList();
 		}
 	}
@@ -63,9 +66,13 @@ public class VendingMachineController {
 		try {
 			return InputView.inputItem();
 		} catch (IllegalArgumentException e) {
-			System.out.println("[ERROR] " + e.getMessage());
-			System.out.println();
+			printErrorMessage(e);
 			return inputItem();
 		}
+	}
+
+	private static void printErrorMessage(IllegalArgumentException e) {
+		System.out.println("[ERROR] " + e.getMessage());
+		System.out.println();
 	}
 }

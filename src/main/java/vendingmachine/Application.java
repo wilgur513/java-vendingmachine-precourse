@@ -8,15 +8,27 @@ public class Application {
 		String money = inputMoney();
 		Coins coins = new CoinsGenerator().generate(money);
 		OutputView.printChangeCoins(coins);
+
+		String itemList = inputItemList();
 	}
 
 	private static String inputMoney() {
 		try {
 			return InputView.inputMoney();
-		} catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			System.out.println("[ERROR] " + e.getMessage());
 			System.out.println();
 			return inputMoney();
+		}
+	}
+
+	private static String inputItemList() {
+		try {
+			return InputView.inputItemList();
+		} catch (IllegalArgumentException e) {
+			System.out.println("[ERROR] " + e.getMessage());
+			System.out.println();
+			return inputItemList();
 		}
 	}
 }

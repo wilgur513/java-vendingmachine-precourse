@@ -1,5 +1,6 @@
 package vendingmachine;
 
+import java.util.List;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
 
@@ -9,7 +10,6 @@ public class Application {
 		Coins coins = new CoinsGenerator().generate(money);
 		OutputView.printChangeCoins(coins);
 
-		String itemList = inputItemList();
 	}
 
 	private static String inputMoney() {
@@ -22,7 +22,7 @@ public class Application {
 		}
 	}
 
-	private static String inputItemList() {
+	private static List<Item> inputItemList() {
 		try {
 			return InputView.inputItemList();
 		} catch (IllegalArgumentException e) {

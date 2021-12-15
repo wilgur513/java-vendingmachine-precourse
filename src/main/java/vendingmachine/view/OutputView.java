@@ -1,6 +1,6 @@
 package vendingmachine.view;
 
-import vendingmachine.Coins;
+import vendingmachine.model.Coins;
 
 public class OutputView {
 	public static void printChangeCoins(Coins coins) {

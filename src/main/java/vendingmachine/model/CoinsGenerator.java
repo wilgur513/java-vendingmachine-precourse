@@ -1,4 +1,4 @@
-package vendingmachine;
+package vendingmachine.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;

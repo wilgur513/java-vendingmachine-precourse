@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import vendingmachine.Item;
+import vendingmachine.model.Item;
 
 public class InputView {
 	public static String inputMoney(String message) {

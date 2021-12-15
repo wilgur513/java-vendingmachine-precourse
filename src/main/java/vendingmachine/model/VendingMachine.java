@@ -43,7 +43,7 @@ public class VendingMachine extends Observable {
 	public void purchase(String itemName) {
 		Optional<Item> optionalItem = findByName(itemName);
 
-		if(!optionalItem.isPresent()) {
+		if (!optionalItem.isPresent()) {
 			throw new IllegalArgumentException("해당 상품이 없습니다.");
 		}
 
@@ -70,5 +70,29 @@ public class VendingMachine extends Observable {
 
 	private boolean hasEnoughMoney(Item item) {
 		return inputMoney >= item.getPrice();
+	}
+
+	public void close() {
+		setChanged();
+		notifyObservers(new Event(EventType.CLOSE_VENDING_MACHINE, getRemainCoins(inputMoney)));
+	}
+
+	private Coins getRemainCoins(int remainMoney) {
+		Coins result = new Coins();
+		for (Coin c : Coin.sortedValues()) {
+			int number = usingNumberOfCoin(c, remainMoney);
+			for (int i = 0; i < number; i++) {
+				result.put(c);
+			}
+		}
+		return result;
+	}
+
+	private int usingNumberOfCoin(Coin coin, int remainMoney) {
+		int neededNumber = remainMoney / coin.getAmount();
+		if (neededNumber > coins.getNumberOf(coin)) {
+			return coins.getNumberOf(coin);
+		}
+		return neededNumber;
 	}
 }

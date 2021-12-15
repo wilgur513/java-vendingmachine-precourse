@@ -7,6 +7,7 @@ import vendingmachine.model.Item;
 import vendingmachine.model.VendingMachine;
 import vendingmachine.view.InputView;
 import vendingmachine.view.PrintCoinsView;
+import vendingmachine.view.PrintRemainCoinsView;
 import vendingmachine.view.PrintRemainMoneyView;
 
 public class VendingMachineController {
@@ -17,6 +18,7 @@ public class VendingMachineController {
 		vendingMachine = new VendingMachine();
 		vendingMachine.addObserver(new PrintCoinsView());
 		vendingMachine.addObserver(new PrintRemainMoneyView());
+		vendingMachine.addObserver(new PrintRemainCoinsView());
 	}
 
 	public void service() {
@@ -33,6 +35,8 @@ public class VendingMachineController {
 				System.out.println();
 			}
 		}
+
+		vendingMachine.close();
 	}
 
 	private static String inputMoney(String message) {

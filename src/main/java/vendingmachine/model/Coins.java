@@ -34,4 +34,10 @@ public class Coins {
 	public int getNumberOf(Coin coin) {
 		return coins.get(coin);
 	}
+
+	public int getTotalAmount() {
+		return coins.keySet().stream()
+			.map(c -> c.getAmount() * getNumberOf(c))
+			.reduce(0, Integer::sum);
+	}
 }

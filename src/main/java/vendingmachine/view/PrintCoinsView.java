@@ -19,7 +19,7 @@ public class PrintCoinsView implements Observer {
 	public static void printChangeCoins(Coins coins) {
 		System.out.println("자판기가 보유한 동전");
 		coins.sortedStream()
-			.forEach(c -> System.out.println(c.getAmount() + "원 - " + coins.getNumberOf(c)));
+			.forEach(c -> System.out.println(c.getAmount() + "원 - " + coins.getNumberOf(c) + "개"));
 		System.out.println();
 	}
 }
